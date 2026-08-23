@@ -1,0 +1,10 @@
+{
+  "case": "xp-laptop-2005-06-25",
+  "status": "analysed",
+  "malfind_rows": 20,
+  "malfind_unique_pids": 9,
+  "rwx_regions": 7,
+  "rwx_unique_pids": 3,
+  "candidate_discrepancies": 0,
+  "method_note": "PID ownership is derived from handles.csv. filescan.csv is used only as independent filename/path evidence because filescan has no PID field."
+}

@@ -1,0 +1,54 @@
+# Forensic images and memory dumps
+*.img
+*.raw
+*.mem
+*.vmem
+*.dmp
+*.dd
+*.E01
+
+# Archives
+*.rar
+*.zip
+*.7z
+
+# Dataset directories
+datasets/
+memory-images/
+
+# Local Volatility installation
+volatility3/
+symbols/
+cache/
+
+# Failed or unsupported cases
+outputs/boomer-win2k/
+outputs/boomer-win2003/
+outputs/vista-beta2/
+
+# Logs and temporary files
+logs/
+**/logs/
+*_error.txt
+temp/
+tmp/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Editors and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Legacy outputs stored directly in outputs/
+outputs/*.csv
+outputs/info.txt
+
+# Keep the aggregate summary
+!outputs/memlink_all_cases_summary.csv

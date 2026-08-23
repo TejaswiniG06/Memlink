@@ -1,0 +1,49 @@
+TreeDepth,PID,Process,Args
+0,4,System,-
+0,448,smss.exe,\\SystemRoot\\System32\\smss.exe
+0,504,csrss.exe,"C:\\WINDOWS\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,3072,512 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ProfileControl=Off MaxRequestThreads=16"
+0,528,winlogon.exe,winlogon.exe
+0,580,services.exe,C:\\WINDOWS\\system32\\services.exe
+0,592,lsass.exe,C:\\WINDOWS\\system32\\lsass.exe
+0,740,svchost.exe,C:\\WINDOWS\\system32\\svchost -k DcomLaunch
+0,800,svchost.exe,C:\\WINDOWS\\system32\\svchost -k rpcss
+0,840,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k netsvcs
+0,876,Smc.exe,"""C:\\Program Files\\Sygate\\SPF\\smc.exe"""
+0,984,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k NetworkService
+0,1024,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k LocalService
+0,1224,spoolsv.exe,C:\\WINDOWS\\system32\\spoolsv.exe
+0,1632,ssonsvr.exe,"""C:\\Program Files\\Citrix\\ICA Client\\ssonsvr.exe"""
+0,1812,explorer.exe,C:\\WINDOWS\\Explorer.EXE
+0,1936,Directcd.exe,"""C:\\Program Files\\Roxio\\Easy CD Creator 5\\DirectCD\\DirectCD.exe"" "
+0,1952,TaskSwitch.exe,"""C:\\WINDOWS\\System32\\taskswitch.exe"" "
+0,1960,Fast.exe,"""C:\\WINDOWS\\System32\\fast.exe"" "
+0,1980,VPTray.exe,"""C:\\PROGRA~1\\SYMANT~1\\SYMANT~1\\vptray.exe"" "
+0,2040,atiptaxx.exe,"""C:\\WINDOWS\\system32\\Atiptaxx.exe"" "
+0,188,jusched.exe,"""C:\\Program Files\\Java\\jre1.5.0_02\\bin\\jusched.exe"" "
+0,224,EM_EXEC.EXE,"""C:\\Program Files\\Logitech\\MouseWare\\system\\em_exec.exe"" "
+0,432,ati2evxx.exe,C:\\WINDOWS\\system32\\ati2evxx.exe
+0,688,Crypserv.exe,crypserv.exe
+0,864,DefWatch.exe,C:\\PROGRA~1\\SYMANT~1\\SYMANT~1\\DefWatch.exe
+0,1076,msdtc.exe,C:\\WINDOWS\\System32\\msdtc.exe
+0,1304,Rtvscan.exe,C:\\PROGRA~1\\SYMANT~1\\SYMANT~1\\Rtvscan.exe
+0,1400,tcpsvcs.exe,C:\\WINDOWS\\System32\\tcpsvcs.exe
+0,1424,snmp.exe,C:\\WINDOWS\\System32\\snmp.exe
+0,1484,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k imgsvc
+0,1548,wdfmgr.exe,C:\\WINDOWS\\system32\\wdfmgr.exe
+0,1700,Fast.exe,C:\\WINDOWS\\System32\\Fast.exe -service
+0,1948,mqsvc.exe,C:\\WINDOWS\\System32\\mqsvc.exe
+0,2536,mqtgsvc.exe,C:\\WINDOWS\\System32\\mqtgsvc.exe
+0,2868,alg.exe,C:\\WINDOWS\\System32\\alg.exe
+0,2424,wuauclt.exe,"""C:\\WINDOWS\\system32\\wuauclt.exe"""
+0,2160,firefox.exe,"""C:\\Program Files\\Mozilla Firefox\\firefox.exe"" "
+0,944,PluckSvr.exe,"""C:\\Program Files\\Pluck Corporation\\Pluck\\PluckSvr.exe"" -Embedding"
+0,2392,iexplore.exe,"""C:\\Program Files\\Internet Explorer\\iexplore.exe"" "
+0,2740,PluckTray.exe,PluckTray.exe
+0,3076,PluckUpdater.ex,-
+0,1916,PluckUpdater.ex,-
+0,3256,PluckTray.exe,-
+0,2624,cmd.exe,"""C:\\WINDOWS\\system32\\cmd.exe"" "
+0,4080,wmiprvse.exe,-
+0,3100,PluckTray.exe,-
+0,4012,dd.exe,dd if=\\\\.\\PhysicalMemory of=c:\\xp-laptop-2005-06-25.img conv=noerror
+

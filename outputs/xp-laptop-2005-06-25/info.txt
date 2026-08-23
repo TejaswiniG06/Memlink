@@ -1,0 +1,27 @@
+Volatility 3 Framework 2.28.1
+
+Variable	Value
+
+Kernel Base	0x804d7000
+DTB	0x39000
+Symbols	file:///D:/cfreds%20team%20b/volatility3/volatility3/symbols/windows/ntoskrnl.pdb/32962337F0F646388B39535CD8DD70E8-2.json.xz
+Is64Bit	False
+IsPAE	False
+layer_name	0 WindowsIntel
+memory_layer	1 FileLayer
+KdDebuggerDataBlock	0x8054c060
+NTBuildLab	2600.xpsp_sp2_gdr.050301-1519
+CSDVersion	2
+KdVersionBlock	0x8054c038
+Major/Minor	15.2600
+MachineType	332
+KeNumberProcessors	1
+SystemTime	2005-06-25 16:58:47+00:00
+NtSystemRoot	C:\WINDOWS
+NtProductType	NtProductWinNt
+NtMajorVersion	5
+NtMinorVersion	1
+PE MajorOperatingSystemVersion	5
+PE MinorOperatingSystemVersion	1
+PE Machine	332
+PE TimeDateStamp	Wed Mar  2 00:59:37 2005

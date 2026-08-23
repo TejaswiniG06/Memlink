@@ -1,0 +1,6 @@
+﻿case,status,malfind_rows,malfind_unique_pids,rwx_regions,rwx_unique_pids,candidate_discrepancies,missing_files,error
+boomer-win2003,skipped_missing_files,,,,,,malfind.csv | pslist.csv | handles.csv | filescan.csv,
+boomer-win2k,skipped_missing_files,,,,,,malfind.csv | pslist.csv | handles.csv | filescan.csv,
+vista-beta2,skipped_missing_files,,,,,,malfind.csv | pslist.csv | handles.csv | filescan.csv,
+xp-laptop-2005-06-25,analysed,20,9,7,3,0,,
+xp-laptop-2005-07-04,analysed,17,7,8,3,0,,

@@ -1,0 +1,46 @@
+TreeDepth,PID,Process,Args
+0,4,System,-
+0,400,smss.exe,\\SystemRoot\\System32\\smss.exe
+0,456,csrss.exe,"C:\\WINDOWS\\system32\\csrss.exe ObjectDirectory=\\Windows SharedSection=1024,3072,512 Windows=On SubSystemType=Windows ServerDll=basesrv,1 ServerDll=winsrv:UserServerDllInitialization,3 ServerDll=winsrv:ConServerDllInitialization,2 ProfileControl=Off MaxRequestThreads=16"
+0,480,winlogon.exe,winlogon.exe
+0,524,services.exe,C:\\WINDOWS\\system32\\services.exe
+0,536,lsass.exe,C:\\WINDOWS\\system32\\lsass.exe
+0,680,svchost.exe,C:\\WINDOWS\\system32\\svchost -k DcomLaunch
+0,760,svchost.exe,C:\\WINDOWS\\system32\\svchost -k rpcss
+0,800,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k netsvcs
+0,840,Smc.exe,"""C:\\Program Files\\Sygate\\SPF\\smc.exe"""
+0,932,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k NetworkService
+0,972,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k LocalService
+0,1104,spoolsv.exe,C:\\WINDOWS\\system32\\spoolsv.exe
+0,1272,ati2evxx.exe,C:\\WINDOWS\\system32\\ati2evxx.exe
+0,1356,Crypserv.exe,crypserv.exe
+0,1380,DefWatch.exe,C:\\PROGRA~1\\SYMANT~1\\SYMANT~1\\DefWatch.exe
+0,1440,msdtc.exe,C:\\WINDOWS\\System32\\msdtc.exe
+0,1484,Rtvscan.exe,C:\\PROGRA~1\\SYMANT~1\\SYMANT~1\\Rtvscan.exe
+0,1548,tcpsvcs.exe,C:\\WINDOWS\\System32\\tcpsvcs.exe
+0,1564,snmp.exe,C:\\WINDOWS\\System32\\snmp.exe
+0,1588,svchost.exe,C:\\WINDOWS\\System32\\svchost.exe -k imgsvc
+0,1640,wdfmgr.exe,C:\\WINDOWS\\system32\\wdfmgr.exe
+0,1844,Fast.exe,C:\\WINDOWS\\System32\\Fast.exe -service
+0,1860,mqsvc.exe,C:\\WINDOWS\\System32\\mqsvc.exe
+0,712,mqtgsvc.exe,C:\\WINDOWS\\System32\\mqtgsvc.exe
+0,992,alg.exe,C:\\WINDOWS\\System32\\alg.exe
+0,2196,ssonsvr.exe,"""C:\\Program Files\\Citrix\\ICA Client\\ssonsvr.exe"""
+0,2392,explorer.exe,C:\\WINDOWS\\Explorer.EXE
+0,2456,Directcd.exe,"""C:\\Program Files\\Roxio\\Easy CD Creator 5\\DirectCD\\DirectCD.exe"" "
+0,2472,TaskSwitch.exe,"""C:\\WINDOWS\\System32\\taskswitch.exe"" "
+0,2480,Fast.exe,"""C:\\WINDOWS\\System32\\fast.exe"" "
+0,2496,VPTray.exe,"""C:\\PROGRA~1\\SYMANT~1\\SYMANT~1\\vptray.exe"" "
+0,2524,atiptaxx.exe,"""C:\\WINDOWS\\system32\\Atiptaxx.exe"" "
+0,2548,jusched.exe,"""C:\\Program Files\\Java\\jre1.5.0_02\\bin\\jusched.exe"" "
+0,2588,EM_EXEC.EXE,"""C:\\Program Files\\Logitech\\MouseWare\\system\\em_exec.exe"" "
+0,2692,WZQKPICK.EXE,"""C:\\Program Files\\WinZip\\WZQKPICK.EXE"" "
+0,3128,wuauclt.exe,"""C:\\WINDOWS\\system32\\wuauclt.exe"""
+0,3192,taskmgr.exe,C:\\WINDOWS\\system32\\taskmgr.exe
+0,3256,cmd.exe,"""C:\\WINDOWS\\system32\\cmd.exe"" "
+0,3276,firefox.exe,"""C:\\Program Files\\Mozilla Firefox\\firefox.exe"" "
+0,3352,PluckSvr.exe,"""C:\\Program Files\\Pluck Corporation\\Pluck\\PluckSvr.exe"" -Embedding"
+0,3612,PluckTray.exe,PluckTray.exe
+0,368,PluckUpdater.ex,-
+0,3300,dd.exe,dd if=\\\\.\\PhysicalMemory of=c:\\xp-2005-07-04-1430.img conv=noerror
+
