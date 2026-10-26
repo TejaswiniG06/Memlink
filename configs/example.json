@@ -1,0 +1,18 @@
+{
+  "case_id": "example-case",
+  "host_id": "example-host",
+  "snapshot_id": "memory-capture-01",
+  "disk_snapshot_id": "disk-capture-01",
+  "host_identity_status": "not_yet_verified",
+  "capture_gap_status": "not_yet_verified",
+  "acquisition_time": null,
+  "path_mappings": {},
+  "autopsy_fs_mounts": {},
+  "memory_image": "REPLACE_WITH_MEMORY_IMAGE_PATH",
+  "memory_sha256": null,
+  "disk_image": "REPLACE_WITH_DISK_IMAGE_PATH",
+  "python": "python",
+  "volatility": "REPLACE_WITH_VOLATILITY3_VOL_PY_PATH",
+  "output_root": "outputs/example-host",
+  "plugins": ["windows.info", "windows.pslist", "windows.psscan", "windows.pstree", "windows.cmdline", "windows.dlllist", "windows.handles", "windows.filescan", "windows.malfind", "windows.ldrmodules", "windows.vadinfo", "windows.modules", "windows.modscan", "windows.netscan", "windows.svcscan", "windows.getsids", "windows.envars"]
+}

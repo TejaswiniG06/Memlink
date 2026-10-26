@@ -6,6 +6,7 @@
 *.dmp
 *.dd
 *.E01
+*.E[0-9][0-9]
 
 # Archives
 *.rar
@@ -15,6 +16,8 @@
 # Dataset directories
 datasets/
 memory-images/
+evidence/
+autopsy/
 
 # Local Volatility installation
 volatility3/
@@ -50,5 +53,34 @@ desktop.ini
 outputs/*.csv
 outputs/info.txt
 
-# Keep the aggregate summary
-!outputs/memlink_all_cases_summary.csv
+# Local outputs and investigation material (existing tracked files stay tracked)
+/backups/
+outputs/
+reports/
+evaluation/
+docs/
+MemLink_Win2003_R2_R5/
+
+# Publish sample configuration only
+configs/*
+!configs/*.example.json
+!configs/example.json
+
+# Additional local installations and compiled artifacts
+volatility2/
+runtime/
+*.class
+*.jar
+*.exe
+*.dll
+*.bin
+*.db
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.pdf
+
+# Accidental shell output files
+/py
+/type

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MemLink / ForgeScan shared artifact",
+  "type": "object",
+  "required": ["artifact_id", "host_id", "source_layer", "source_tool", "artifact_type", "path", "filename", "pid", "ppid", "md5", "mtime", "atime", "ctime", "crtime", "size", "allocated", "tamper_score", "ttp_ids", "raw", "case_id", "snapshot_id", "source_file", "source_record"],
+  "properties": {
+    "artifact_id": {"type": "string", "format": "uuid"},
+    "host_id": {"type": "string", "minLength": 1},
+    "source_layer": {"enum": ["disk", "memory"]},
+    "source_tool": {"type": "string", "minLength": 1},
+    "artifact_type": {"type": "string", "minLength": 1},
+    "path": {"type": ["string", "null"]},
+    "filename": {"type": ["string", "null"]},
+    "pid": {"type": ["integer", "null"]},
+    "ppid": {"type": ["integer", "null"]},
+    "md5": {"type": ["string", "null"], "pattern": "^[0-9a-f]{32}$"},
+    "mtime": {"type": ["string", "null"], "format": "date-time"},
+    "atime": {"type": ["string", "null"], "format": "date-time"},
+    "ctime": {"type": ["string", "null"], "format": "date-time"},
+    "crtime": {"type": ["string", "null"], "format": "date-time"},
+    "size": {"type": ["integer", "null"]},
+    "allocated": {"type": ["boolean", "null"]},
+    "tamper_score": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+    "ttp_ids": {"type": ["array", "null"], "items": {"type": "string", "pattern": "^T[0-9]{4}(\\.[0-9]{3})?$"}},
+    "raw": {"type": "object"},
+    "case_id": {"type": "string", "minLength": 1},
+    "snapshot_id": {"type": "string", "minLength": 1},
+    "source_file": {"type": "string", "minLength": 1},
+    "source_record": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}
