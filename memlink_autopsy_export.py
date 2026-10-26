@@ -19,6 +19,9 @@ FIELDS = ['case_id', 'host_id', 'snapshot_id', 'artifact_type', 'evidence_kind',
 
 
 def export(database, config, output, ingest_status):
+    snapshot_id = config.get('disk_snapshot_id')
+    if not isinstance(snapshot_id, str) or not snapshot_id.strip():
+        raise ValueError('disk_snapshot_id must identify the disk acquisition in the configuration')
     output.mkdir(parents=True, exist_ok=False)
     connection = sqlite3.connect(database.resolve().as_uri() + '?mode=ro', uri=True)
     connection.row_factory = sqlite3.Row
@@ -35,7 +38,7 @@ def export(database, config, output, ingest_status):
             stamp = datetime.fromtimestamp(row['mtime'], timezone.utc).isoformat() if row['mtime'] else ''
             record = {k: row[k] for k in ('fs_obj_id', 'meta_addr', 'meta_seq', 'size', 'mtime', 'atime', 'ctime', 'crtime', 'dir_flags', 'meta_flags')}
             record.update(case_id=config['case_id'], host_id=config['host_id'],
-                          snapshot_id=config.get('disk_snapshot_id', 'dc01-disk-acquisition'),
+                          snapshot_id=snapshot_id,
                           artifact_type='filesystem_metadata', evidence_kind='disk',
                           source_file=str(database.resolve()), source_record='tsk_files.obj_id=' + str(row['obj_id']),
                           original_path=original, path=path, sha256=row['sha256'] or '',

@@ -60,7 +60,7 @@ def validate(root):
     with (root/'validation.json').open('x',encoding='utf-8') as target:json.dump(result,target,indent=2)
     layers=Counter()
     for key,count in counts.items():layers[key.split(':',1)[0]]+=count
-    lines=['# DC01 unified normalized evidence','',
+    lines=[f"# {manifest['host_id']} unified normalized evidence",'',
            'Status: '+result['status']+'. '+str(total)+' artifact observations; no detection-accuracy claim.',
            '', 'Authoritative evidence: `evidence.jsonl` (one typed artifact per line).',
            'Supporting files: `manifest.json`, `validation.json`, `source_snapshot.db`, `rejected_records.jsonl`.',

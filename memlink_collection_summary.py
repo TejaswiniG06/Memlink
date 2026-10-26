@@ -12,6 +12,8 @@ def publish(root,config_path):
     if validation['status']!='passed' or validation['sha256']!=manifest['sha256']:
         raise ValueError('Collection has not passed validation')
     config=json.loads(config_path.read_text())
+    if config['host_id'] != manifest['host_id'] or config['case_id'] != manifest['case_id']:
+        raise ValueError('Configuration identity does not match the collection')
     manifest['configuration']=config
     connection=sqlite3.connect((root/'source_snapshot.db').as_uri()+'?mode=ro',uri=True)
     connection.row_factory=sqlite3.Row
@@ -24,7 +26,7 @@ def publish(root,config_path):
     manifest['timezone_note']='Autopsy image timezone is analyst display configuration, not verified victim timezone. Original UTC/raw values retained.'
     (root/'manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf-8')
     (root/'normalization_config.json').write_text(json.dumps(config,indent=2),encoding='utf-8')
-    lines=['# Unified DC01 evidence collection','',
+    lines=[f"# Unified {config['host_id']} evidence collection",'',
            f"**{manifest['total_records']:,} normalized artifact observations. Validation: passed.**",'',
            'Main file: [evidence.jsonl](evidence.jsonl). One JSON object per artifact observation.',
            'Supporting files: [manifest](manifest.json), [validation](validation.json), [configuration](normalization_config.json).','',
