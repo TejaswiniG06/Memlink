@@ -19,8 +19,13 @@ Evidence → extraction → normalization → assessment → correlation → rep
 - Hash and normalized-path correlation with explicit strengths and limitations.
 - JSON, CSV and HTML outputs for supported stages.
 
-Comprehensive maliciousness assessment, evidence-backed ATT&CK reconstruction and
-real-case evaluation remain under development.
+Phase 1 demonstrated a working memory–disk correlation engine on DC01. The
+reproducible run analyzed 307,603 normalized records and produced 64 ranked
+findings. The offline dashboard links findings to their source records and shows
+two curated evidence traces for `coreupdater` and `spoolsv.exe`. The build checks
+each trace against the cited records.
+Automated incident-wide timeline reconstruction, ATT&CK mapping and validation
+on an independent case are planned for Phase 2.
 
 ## Case study and evaluation
 
@@ -29,8 +34,9 @@ The current case study uses the DC01 host from
 a community training scenario published by DFIR Madness. Case-study evidence is
 not distributed with the new pipeline; obtain it from the publisher.
 
-Evaluation is retrospective because parts of the published solution were reviewed
-before rules were frozen. Results are not presented as blind detection results.
+The DC01 analysis is retrospective because the published solution informed the
+investigation. The rules are still in draft, and the conclusions are pending team
+review.
 Engineering tests and structural validation do not establish detection accuracy.
 
 ## Requirements
