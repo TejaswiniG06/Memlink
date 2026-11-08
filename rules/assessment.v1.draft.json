@@ -1,0 +1,196 @@
+{
+  "specification_version": "1.0-draft",
+  "status": "draft_not_frozen_not_authorized_as_a_validated_detector",
+  "evaluation_design": "retrospective_known_case",
+  "baseline_disclosure": "Specification informed by previously inspected case outputs, service-event associations and published-solution knowledge. No blind-discovery claim. Case-specific names, addresses and hashes are excluded from candidate-generation rules.",
+  "scope": "Same-case, same-host memory and disk evidence; capture identities retained separately.",
+  "implementation_gate": [
+    "Validate all inputs and their extraction status; missing/failed is not a negative finding.",
+    "Implement and test the predicates below before marking the specification frozen.",
+    "Require all ranking evidence to reference exact source records and an action candidate.",
+    "Save specification, implementation, input and configuration hashes plus UTC freeze date before the ranked run.",
+    "Never modify a frozen version; amendments require a new version and a separate run."
+  ],
+  "identity_policy": {
+    "process_key": ["case_id", "host_id", "snapshot_id", "pid", "process_create_time", "process_name"],
+    "missing_creation_time": "ambiguous_identity; no certain instance ownership",
+    "pid_aliases": ["PID", "Pid"],
+    "conflicting_aliases": "reject_input",
+    "pid_only_cross_layer_join": "forbidden",
+    "path_rules": "Preserve originals; lowercase Windows separators; device, environment and short-name aliases require evidence-backed mappings. Basename-only is weak.",
+    "file_reference": "Prefer verified volume identity plus MFT record and sequence when available. Record numbers alone are reusable.",
+    "historical_hostname": "Preserve event Computer; do not invent aliases or reject same-image historical records as foreign-host proof. Unverified aliases limit association strength.",
+    "absence": "Only not_found_in_available_inventory until source coverage, paths, allocation, host and acquisition gaps are established."
+  },
+  "closed_actions": [
+    {
+      "id": "A01",
+      "action": "service_creation_or_modification",
+      "action_evidence": "Service-install/change event or explicit service-change records; service configuration alone establishes configuration only.",
+      "suspicion_predicates": ["Configured interpreter performs an explicit pipe-write or download-and-execute command", "Associated executable has independently reviewed malicious-content evidence"],
+      "limitations": "Legitimate administration and acquisition services remain alternatives; installation is not payload execution."
+    },
+    {
+      "id": "A02",
+      "action": "command_or_script_execution",
+      "action_evidence": "Process/execution event or a compatible process instance with command line.",
+      "suspicion_predicates": ["Encoded command whose decoded content performs download-and-execute or credential-access behavior", "Explicit download-and-execute command sequence"],
+      "limitations": "A configured service command is not proof the command executed; encoding alone does not establish malicious intent."
+    },
+    {
+      "id": "A03",
+      "action": "possible_process_injection",
+      "action_evidence": "Executable-memory region linked to a compatible process, with thread-start overlap or reviewed payload structure/content.",
+      "suspicion_predicates": ["Thread Win32 start address falls inside private executable memory and the same region contains reviewed payload structure", "Executable private region contains independently reviewed injection-related payload evidence"],
+      "limitations": "RWX, MZ headers and missing backing paths alone are insufficient; JIT/runtime and legitimate loading alternatives must be reviewed."
+    },
+    {
+      "id": "A04",
+      "action": "possible_process_image_replacement",
+      "action_evidence": "Verified main-image mapping/content inconsistent with its backing executable, with executable-memory evidence.",
+      "suspicion_predicates": ["Main-image identity/content contradiction survives relocation, version and capture-gap checks"],
+      "limitations": "Name/path resemblance, a missing DLL record or RWX alone cannot establish hollowing."
+    },
+    {
+      "id": "A05",
+      "action": "possible_module_or_driver_concealment",
+      "action_evidence": "Comparable loader/list and mapping/scan observations with stable object identity.",
+      "suspicion_predicates": ["Visibility disagreement survives the defined baseline, unloading and stale-object review"],
+      "limitations": "False loader flags and scan-only records are anomalies until contextual review; no automatic rootkit mapping."
+    },
+    {
+      "id": "A06",
+      "action": "possible_file_deletion_while_referenced",
+      "action_evidence": "Compatible memory handle and explicitly deleted disk record with verified file identity.",
+      "suspicion_predicates": ["Deletion relates to an independently supported suspicious action involving the same object"],
+      "limitations": "Normal deletion is possible; filescan alone does not establish ownership, deletion or intent."
+    },
+    {
+      "id": "A07",
+      "action": "possible_persistence_via_task_or_run_key",
+      "action_evidence": "Actual task/Run-key record or corresponding creation/change event.",
+      "suspicion_predicates": ["Configured command meets A02 behavior predicates", "Verified referenced payload has independently reviewed malicious-content evidence"],
+      "limitations": "A mechanism's presence alone is not maliciousness or execution."
+    },
+    {
+      "id": "A08",
+      "action": "possible_timestamp_manipulation",
+      "action_evidence": "Separate NTFS SI/FN timestamps or documented partner detector output with source records.",
+      "suspicion_predicates": ["SI/FN divergence survives normal filesystem behavior review and relates to a supported suspicious object"],
+      "limitations": "Generic MACB exports and whole-second timestamps alone are insufficient; partner score is not an automatic verdict."
+    }
+  ],
+  "observation_rules": {
+    "scan_only_process": "Compare unique PID sets and logical instances; preserve termination and PID reuse. A scan-only record is Tier 3 until an action is supported.",
+    "parent_relationship": "Review compatible parent/child lifetimes and command lines. Missing parent or services-to-shell lineage alone is not a malicious action.",
+    "network": "Preserve every row and group tuples separately. PID/name agreement is not liveness; endpoint observations alone do not establish C2 or T1071.",
+    "missing_executable_or_module": "Record inventory coverage and unresolved paths; do not infer deletion/concealment from an unmatched name."
+  },
+  "evidence_families": {
+    "volatility.info": "host_metadata",
+    "volatility.envars": "process_environment",
+    "volatility.getsids": "process_security_context",
+    "volatility.pslist": "process_objects",
+    "volatility.psscan": "process_objects",
+    "volatility.pstree": "process_objects",
+    "volatility.cmdline": "process_parameters",
+    "volatility.malfind": "memory_regions",
+    "volatility.vadinfo": "memory_regions",
+    "volatility.ldrmodules": "process_loader_state",
+    "volatility.dlllist": "process_loader_state",
+    "volatility.modules": "kernel_module_state",
+    "volatility.modscan": "kernel_module_state",
+    "volatility.threads": "thread_objects",
+    "volatility.thrdscan": "thread_objects",
+    "volatility.netscan": "network_objects",
+    "volatility.handles": "handle_objects",
+    "volatility.filescan": "memory_file_objects",
+    "volatility.svcscan": "service_configuration",
+    "autopsy.regripper.services": "service_configuration",
+    "autopsy.tsk_files": "filesystem_metadata",
+    "autopsy.blackboard.RA_SHELL_BAG": "shell_history",
+    "autopsy.blackboard.TSK_ASSOCIATED_OBJECT": "derived_association",
+    "autopsy.blackboard.TSK_DATA_SOURCE_USAGE": "extraction_metadata",
+    "autopsy.blackboard.TSK_DEVICE_ATTACHED": "device_history",
+    "autopsy.blackboard.TSK_ENCRYPTION_SUSPECTED": "derived_disk_signal",
+    "autopsy.blackboard.TSK_EXT_MISMATCH_DETECTED": "derived_disk_signal",
+    "autopsy.blackboard.TSK_INSTALLED_PROG": "installed_program_state",
+    "autopsy.blackboard.TSK_OS_INFO": "host_metadata",
+    "autopsy.blackboard.TSK_RECENT_OBJ": "shell_history",
+    "autopsy.blackboard.TSK_RECYCLE_BIN": "recycle_bin_metadata",
+    "autopsy.blackboard.TSK_WEB_BOOKMARK": "browser_artifacts",
+    "autopsy.blackboard.TSK_WEB_COOKIE": "browser_artifacts",
+    "autopsy.blackboard.TSK_WEB_HISTORY": "browser_artifacts",
+    "windows.Get-WinEvent|service_install_event": "service_install_event"
+  },
+  "unmapped_family_policy": "Retain and flag for review; zero ranking contribution until explicitly mapped. Never create an independent family per unknown record.",
+  "independence_policy": {
+    "count": "Distinct action-relevant corroboration groups after deduplicating underlying object and derivation lineage, not plugin or row counts.",
+    "groups": {
+      "host_metadata": "context_only",
+      "process_environment": "memory_runtime",
+      "process_security_context": "memory_runtime",
+      "process_objects": "memory_runtime",
+      "process_parameters": "memory_runtime",
+      "memory_regions": "memory_runtime",
+      "process_loader_state": "memory_runtime",
+      "kernel_module_state": "memory_runtime",
+      "thread_objects": "memory_runtime",
+      "network_objects": "memory_network_state",
+      "handle_objects": "memory_file_reference",
+      "memory_file_objects": "memory_file_reference",
+      "service_configuration": "service_configuration",
+      "filesystem_metadata": "disk_file_state",
+      "shell_history": "shell_state",
+      "derived_association": "context_only",
+      "extraction_metadata": "context_only",
+      "device_history": "device_state",
+      "derived_disk_signal": "disk_file_state",
+      "installed_program_state": "registry_application_state",
+      "recycle_bin_metadata": "disk_file_state",
+      "browser_artifacts": "browser_state",
+      "service_install_event": "service_install_event"
+    },
+    "specific_cases": [
+      "pslist/psscan/pstree views of one process count once.",
+      "malfind/VAD bytes/thread overlap support one runtime behavior; do not inflate counts from derived descriptions.",
+      "svcscan and registry configuration share a corroboration group.",
+      "A service-install event is distinct from service configuration, but must support the same action and service identity.",
+      "Filesystem metadata, recovered-file hash and derived detector signals do not independently count as three actions.",
+      "Equal endpoint tuples are a grouped view, not automatically identical objects or independent connections."
+    ]
+  },
+  "loader_baselines": [
+    {
+      "id": "B01",
+      "pattern": "Process main executable with InLoad=true, InMem=true, InInit=false",
+      "required_context": "Same process instance, image base and verified mapped main-image path; basename alone insufficient.",
+      "effect": "Explain loader initialization flag only; retain the record and all unrelated findings.",
+      "implementation_status": "pending"
+    },
+    {
+      "id": "B02",
+      "pattern": "Mapped non-image data file absent from loader lists",
+      "required_context": "VAD/image classification and actual mapping context establish non-image data; extension or False flags alone insufficient.",
+      "effect": "Explain list absence only; do not label process benign.",
+      "implementation_status": "pending"
+    }
+  ],
+  "ranking": {
+    "tier_1": "Closed action with at least one satisfied suspicion predicate, two or more relevant corroboration groups, full-path or content identity, compatible known times, and no unresolved material identity/coverage contradiction.",
+    "tier_2": "Closed action and satisfied suspicion predicate, but only one relevant corroboration group or unresolved timing/identity. Never a confirmed-malicious verdict by tier alone.",
+    "tier_3": "Observation/anomaly, weak association, unresolved absence, or suspicion predicate not established.",
+    "baseline": "Only observations meeting an explicit verified baseline; not a blanket process verdict.",
+    "identity_order": ["comparable_content_hash", "verified_volume_file_reference", "resolved_full_path", "service_name_and_context", "basename", "unresolved"],
+    "temporal_order": ["compatible_known", "unknown", "contradicted"],
+    "stable_sort": ["tier_ascending", "relevant_corroboration_group_count_descending", "identity_order_ascending", "temporal_order_ascending", "stable_finding_id_ascending"],
+    "missing_values": "Unknown does not mean compatible; context-only evidence contributes zero corroboration groups."
+  },
+  "attack_mapping": "Separate evidence-backed reasoning after assessment; RWX is not hollowing, hidden flags are not rootkit proof, service parentage is not service abuse, and endpoints alone are not application-protocol C2.",
+  "known_implementation_gaps": [
+    "Loader baseline predicates are not yet implemented or verified.",
+    "Existing assessment collects observations; it does not implement the closed-action classifier or tier ranking.",
+    "Additional event/task/cache/NTFS extraction coverage remains incomplete.",
+    "No real-case accuracy metric or blind validation is established."
+  ]
+}

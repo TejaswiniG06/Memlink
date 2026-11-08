@@ -35,6 +35,7 @@ logs/
 *_error.txt
 temp/
 tmp/
+/tests/tmp*/
 
 # Python
 __pycache__/
@@ -55,6 +56,8 @@ outputs/info.txt
 
 # Local outputs and investigation material (existing tracked files stay tracked)
 /backups/
+/evidence_exports/
+/PACK_MANIFEST.json
 outputs/
 reports/
 evaluation/

@@ -42,6 +42,10 @@ with its own dependencies; disk collection requires compatible Autopsy outputs.
 
 ## Configuration and usage
 
+To reproduce the DC01 Phase 1 dashboard from saved evidence exports without the
+original drive, follow the [Phase 1 handover](PHASE1_HANDOVER.md). The code is
+versioned here; the required input pack is shared privately.
+
 Copy `configs/example.json` to a local configuration and replace all placeholder
 paths and identifiers. Paths are interpreted relative to the working directory
 unless absolute. Configure only mappings supported by evidence; record memory

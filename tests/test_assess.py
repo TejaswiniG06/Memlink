@@ -2,11 +2,26 @@ import unittest
 import json
 import tempfile
 from pathlib import Path
-from memlink_assess import assess, load_runs
+from memlink_assess import assess, load_runs, artifact_pid
 from memlink_pipeline import sha256
 
 
 class ProcessAssessmentTests(unittest.TestCase):
+    def test_loader_pid_alias_retains_flagged_observations(self):
+        process = {'PID': 12, 'ImageFileName': 'example.exe', 'PPID': 0}
+        loader = {'Pid': 12, 'InLoad': False, 'InInit': False, 'InMem': False}
+        rows = assess({'windows.pslist': [process], 'windows.ldrmodules': [loader]},
+                      {'windows.pslist': 'list.json'})
+        self.assertEqual(rows[0]['loader_flag_rows'], 1)
+        self.assertIn('loader_flags_require_context', rows[0]['reasons'])
+        self.assertEqual(rows[0]['analyst_verdict'], 'not_reviewed')
+        self.assertNotIn('PID', loader)
+
+    def test_conflicting_pid_aliases_are_rejected(self):
+        with self.assertRaisesRegex(ValueError, 'Conflicting'):
+            artifact_pid({'PID': 12, 'Pid': 13})
+        self.assertEqual(artifact_pid({'Pid': '12'}), 12)
+
     def test_failed_retry_does_not_reuse_stale_artifact(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as temp:
             root = Path(temp)
